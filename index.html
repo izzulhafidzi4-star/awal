@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujian Kerentanan Hati - Spesial Nayla</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif, system-ui;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #31102f 100%);
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #f43f5e;
+        }
+
+        p.question-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        button {
+            background: #f43f5e;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: #e11d48;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4);
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .final-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            min-height: 50px;
+            margin-top: 20px;
+        }
+
+        #btnNo {
+            background: #475569;
+            position: absolute;
+            right: 20px;
+        }
+
+        #btnYes {
+            position: absolute;
+            left: 20px;
+        }
+
+        /* Efek Love Melayang */
+        .heart {
+            position: fixed;
+            bottom: -20px;
+            font-size: 24px;
+            user-select: none;
+            pointer-events: none;
+            animation: moveUp 4s linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes moveUp {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-105vh) scale(1.3);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="mainCard">
+        <!-- Halaman Awal -->
+        <div class="step active" id="step1">
+            <h2>Peringatan Sistem hati yang penuh tanda tanya?! ⚠️</h2>
+            <p class="question-text">Sistem mendeteksi ada seseorang yang belakangan ini sering mikirin kamu diam-diam.</p>
+            <button onclick="nextStep(2)">Cek Peringatan Ini</button>
+        </div>
+
+        <!-- Pertanyaan 1 -->
+        <div class="step" id="step2">
+            <h2>Pertanyaan 1/5</h2>
+            <p class="question-text">Sebelum lanjut, coba konfirmasi dulu... Nama kamu itu <b>Nayla Syakir</b> bukan?</p>
+            <div class="btn-group">
+                <button onclick="nextStep(3)">Iya benar, kok tahu?</button>
+                <button onclick="nextStep(3)">Bukan, tapi mirip aja 😜</button>
+            </div>
+        </div>
+
+        <!-- Pertanyaan 2 -->
+        <div class="step" id="step3">
+            <h2>Pertanyaan 2/5</h2>
+            <p class="question-text">Menurut kamu, kalau ada cowok yang suka mendadak nyari alasan ngobrol/chat sama kamu, dia itu...</p>
+            <div class="btn-group">
+                <button onclick="nextStep(4)">Cuma gabut doang</button>
+                <button onclick="nextStep(4)">Orangnya ramah aja</button>
+                <button onclick="nextStep(4)">Lagi nahan perasaan suka 🤫</button>
+            </div>
+        </div>
+
+        <!-- Pertanyaan 3 -->
+        <div class="step" id="step4">
+            <h2>Pertanyaan 3/5</h2>
+            <p class="question-text">Seberapa sering kamu merhatiin orang yang bikin web ini tanpa kamu sadari?</p>
+            <div class="btn-group">
+                <button onclick="nextStep(5)">Lumayan sering sih...</button>
+                <button onclick="nextStep(5)">Tiap hari malah!</button>
+                <button onclick="nextStep(5)">Dikit-dikit kebayang mulu</button>
+            </div>
+        </div>
+
+        <!-- Pertanyaan 4 -->
+        <div class="step" id="step5">
+            <h2>Pertanyaan 4/5</h2>
+            <p class="question-text">Kalau misal cowok itu sebenarnya pemalu banget, makanya dia milih ngungkapin perasaannya lewat kode web ini... kamu bakal gimana?</p>
+            <div class="btn-group">
+                <button onclick="nextStep(6)">Ketawa terus hargai perasaannya</button>
+                <button onclick="nextStep(6)">Seneng banget pastinya!</button>
+            </div>
+        </div>
+
+        <!-- Pertanyaan 5 (Jebakan Akhir) -->
+        <div class="step" id="step6">
+            <h2>Pertanyaan 5/5 (Terakhir)</h2>
+            <p class="question-text">Pertanyaan penentu: Apakah Nayla Syakir bersedia bikin hari-hari orang yang buat web ini jadi lebih berwarna?</p>
+            <div class="btn-group">
+                <button onclick="showEnding()">Bersedia banget!</button>
+                <button onclick="showEnding()">Gas, asal dijajanin 😋</button>
+            </div>
+        </div>
+
+        <!-- Halaman Penutup (The Reveal / Tembakan) -->
+        <div class="step" id="stepFinal">
+            <h2>Untuk Nayla Syakir... ❤️</h2>
+            <p class="question-text">
+                Jujur, aku sebenarnya mau ngomong langsung tapi suka lidah kelonjatan karena malu. 
+                <br><br>
+                Aku suka sama kamu, Nayla. Mau nggak kamu jalanin hari-hari bareng aku sebagai temen yang jauh lebih deket?
+            </p>
+            <div class="final-btns">
+                <button id="btnYes" onclick="accepted()">Mau Banget!</button>
+                <button id="btnNo" onmouseover="moveNoButton()" onclick="moveNoButton()">Nggak Mau</button>
+            </div>
+        </div>
+
+        <!-- Halaman Sukses Setelah Klik "Mau Banget!" -->
+        <div class="step" id="stepSuccess">
+            <h2>Yeay! Official Nih Ya, Nayla! 🥰✨</h2>
+            <p class="question-text">
+                Makasih ya udah mau nerima aku! Janji deh bakal bikin hari-hari kamu makin seru dan penuh senyum.
+            </p>
+            <p style="color: #f43f5e; font-weight: 600; margin-top: 15px; font-size: 1.1rem;">
+                Nanti kita jalan bareng ya! 💌
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let heartInterval;
+
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
+        }
+
+        function showEnding() {
+            nextStep('Final');
+            // Mulai animasi love bertebaran
+            heartInterval = setInterval(createHeart, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Fungsi jahil: Tombol "Nggak Mau" kabur saat diarahkan kursor/diklik
+        function moveNoButton() {
+            const btnNo = document.getElementById('btnNo');
+            const x = Math.random() * (window.innerWidth - 120) - (window.innerWidth / 2 - 60);
+            const y = Math.random() * (window.innerHeight - 80) - (window.innerHeight / 2 - 40);
+            
+            btnNo.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        // Ketika tombol "Mau Banget!" diklik
+        function accepted() {
+            nextStep('Success');
+            
+            // Efek love-nya bikin makin ramai
+            clearInterval(heartInterval);
+            heartInterval = setInterval(createHeart, 100);
+
+            // Fitur Auto-Send WhatsApp ke nomor kamu (083877634722)
+            const nomorKamu = "6283877634722"; 
+            const pesan = "Halo! Nayla Syakir udah ngeklik 'Mau Banget!' di web jebakan cintanya nih! Cepat telfon/chat dia! 💖✨";
+            
+            setTimeout(() => {
+                const urlWA = `https://wa.me/${nomorKamu}?text=${encodeURIComponent(pesan)}`;
+                window.open(urlWA, '_blank');
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
